@@ -1,4 +1,5 @@
 from customtkinter import *
+from backend.calculadora_logic import *
 
 # Interface da Calculadora.
 # Tamannho da interface, ela não pode aumentar e está no modo claro,
@@ -9,7 +10,15 @@ ic._set_appearance_mode('light')
 ic.title('Calculadora')
 
 # Aqui, é para mostrar os valores que seram calculadores e o resultado.
-valores_e_resultados = 0.0
+valores_e_resultados = ["0.0"]
+
+
+def clicar_numero(numero):
+    global adicionar_numero
+
+    resultado_backend = adicionar_numero(numero)
+
+    resultado.configure(text=resultado_backend)
 
 # O frame principal do sistema.
 frame_ic = CTkFrame(
@@ -92,7 +101,7 @@ botao_c.place(x=201.5, y=211.7)
 botao_mostrar = CTkButton(
     frame_ic, **b_azul,
     text='=',
-    command=None
+    command=lambda: resultado.configure(text=calcular())
 )
 botao_mostrar.place(x=294.1, y=527.7)
 
@@ -133,7 +142,8 @@ botao_raiz.place(x=201.5, y=274.8)
 botao_soma = CTkButton(
     frame_ic, **b_cinza,
     text='+',
-    command=None
+    command=lambda: resultado.configure(text=def_operação("+"))
+
 )
 botao_soma.place(x=294.1, y=464.5)
 
@@ -141,7 +151,7 @@ botao_soma.place(x=294.1, y=464.5)
 botao_diminui = CTkButton(
     frame_ic, **b_cinza,
     text='-',
-    command=None
+    command=lambda: resultado.configure(text=def_operação("-"))
 ).place(x=294.1, y=401.4)
 
 # Multiplicar valores (2 * 2)
@@ -165,7 +175,7 @@ botao_dividir.place(x=295.2, y=274.8)
 botao_0 = CTkButton(
     frame_ic, **b_branco,
     text='0',
-    command=None
+    command=lambda: clicar_numero(0)
 )
 botao_0.place(x=106.6, y=527.7)
 
@@ -173,7 +183,7 @@ botao_0.place(x=106.6, y=527.7)
 botao_1 = CTkButton(
     frame_ic, **b_branco,
     text='1',
-    command=None
+    command=lambda:  clicar_numero(1)
 )
 botao_1.place(x=13, y=464.5)
 
@@ -181,7 +191,7 @@ botao_1.place(x=13, y=464.5)
 botao_2 = CTkButton(
     frame_ic, **b_branco,
     text='2',
-    command=None
+    command=lambda: clicar_numero(2)
 )
 botao_2.place(x=106.6, y=464.5)
 
@@ -189,7 +199,7 @@ botao_2.place(x=106.6, y=464.5)
 botao_3 = CTkButton(
     frame_ic, **b_branco,
     text='3',
-    command=None
+    command=lambda: clicar_numero(3)
 )
 botao_3.place(x=200.3, y=464.5)
 
@@ -197,7 +207,7 @@ botao_3.place(x=200.3, y=464.5)
 botao_4 = CTkButton(
     frame_ic, **b_branco,
     text='4',
-    command=None
+    command=lambda: clicar_numero(4)
 )
 botao_4.place(x=13, y=401.4)
 
@@ -205,7 +215,7 @@ botao_4.place(x=13, y=401.4)
 botao_5 = CTkButton(
     frame_ic, **b_branco,
     text='5',
-    command=None
+    command=lambda: clicar_numero(5)
 )
 botao_5.place(x=106.6, y=401.4)
 
@@ -213,7 +223,7 @@ botao_5.place(x=106.6, y=401.4)
 botao_6 = CTkButton(
     frame_ic, **b_branco,
     text='6',
-    command=None
+    command=lambda:clicar_numero(6)
 )
 botao_6.place(x=200.3, y=401.4)
 
@@ -221,7 +231,7 @@ botao_6.place(x=200.3, y=401.4)
 botao_7 = CTkButton(
     frame_ic, **b_branco,
     text='7',
-    command=None
+    command=lambda: clicar_numero(7)
 )
 botao_7.place(x=13, y=338.2)
 
@@ -229,7 +239,7 @@ botao_7.place(x=13, y=338.2)
 botao_8 = CTkButton(
     frame_ic, **b_branco,
     text='8',
-    command=None
+    command=lambda: clicar_numero(8)
 )
 botao_8.place(x=106.6, y=338.2)
 
@@ -237,7 +247,7 @@ botao_8.place(x=106.6, y=338.2)
 botao_9 = CTkButton(
     frame_ic, **b_branco,
     text='9',
-    command=None
+    command=lambda: clicar_numero(9)
 )
 botao_9.place(x=200.3, y=338.2)
 
@@ -251,6 +261,7 @@ botao_virgula.place(x=200.3, y=527.7)
 
 # Onde os valores de números e resultados seram mostrados.
 resultado = CTkLabel(
+    
     frame_ic,
     width=372.8,
     height=59.7,
