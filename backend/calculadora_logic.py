@@ -5,6 +5,8 @@
 #faz calculo
 #joga pra tela
 
+import math
+
 
 numero_escolhido1 = ""
 operação = None
@@ -26,6 +28,8 @@ def adicionar_numero(numero):
         
         return numero_escolhido2
     
+
+    
     
     
     
@@ -37,25 +41,55 @@ def adicionar_numero(numero):
 def def_operação(op):
     global operação
     operação = op
+    
 
 
 
 def calcular():
     global numero_escolhido1,numero_escolhido2,operação
     num1 = float(numero_escolhido1)
+    
+
+    if operação == "²√x":
+        resultado = math.sqrt(num1) 
+        return f"{resultado:.1f}"
+    
+    if operação == "x²":
+        return num1 ** 2
+    
     num2 = float(numero_escolhido2)
 
     if operação == "+":
-        return  num1 + num2 
+        resultado = num1 + num2 
+        return f"{resultado:.1f}"
 
     elif operação == "-":
-        return num1 - num2 
+        resultado = num1 - num2 
+        return f"{resultado:.1f}"
+    
+    elif operação == "x":
+        resultado = num1 * num2
+        return f"{resultado:.1f}"
+    
+    elif operação == "/":
+        resultado = num1 / num2
+        return f"{resultado:.2f}"
     
     
-def zerar_calculo():
-    global numero_escolhido1,numero_escolhido2
-    numero_escolhido1 = ""   
-    numero_escolhido2 = ""         
+    
+    
+    
+    
+
+def limpar_tela():
+    global numero_escolhido1,numero_escolhido2,operação
+    numero_escolhido1 = ""
+    numero_escolhido2 = ""
+    operação = None
+
+    return "0"
+
+     
     
 
 

@@ -10,7 +10,7 @@ ic._set_appearance_mode('light')
 ic.title('Calculadora')
 
 # Aqui, é para mostrar os valores que seram calculadores e o resultado.
-valores_e_resultados = ["0.0"]
+valores_e_resultados = 0
 
 
 def clicar_numero(numero):
@@ -19,6 +19,9 @@ def clicar_numero(numero):
     resultado_backend = adicionar_numero(numero)
 
     resultado.configure(text=resultado_backend)
+
+
+
 
 # O frame principal do sistema.
 frame_ic = CTkFrame(
@@ -94,7 +97,7 @@ botao_ce.place(x=107.7, y=211.7) # Onde fica o botão.
 botao_c = CTkButton(
     frame_ic, **b_azul,
     text='C',
-    command=None
+    command=lambda: resultado.configure(text=limpar_tela())
 )
 botao_c.place(x=201.5, y=211.7)
 
@@ -126,7 +129,7 @@ botao_porsentagem.place(x=14.2, y=274.8)
 botao_elevado = CTkButton(
     frame_ic, **b_cinza,
     text='x²',
-    command=None
+    command=lambda: resultado.configure(text=def_operação("x²"))
 )
 botao_elevado.place(x=107.7, y=274.8)
 
@@ -134,7 +137,7 @@ botao_elevado.place(x=107.7, y=274.8)
 botao_raiz = CTkButton(
     frame_ic, **b_cinza,
     text='²√x',
-    command=None
+    command=lambda: resultado.configure(text=def_operação("²√x"))
 )
 botao_raiz.place(x=201.5, y=274.8)
 
@@ -142,7 +145,8 @@ botao_raiz.place(x=201.5, y=274.8)
 botao_soma = CTkButton(
     frame_ic, **b_cinza,
     text='+',
-    command=lambda: resultado.configure(text=def_operação("+"))
+    command=lambda: def_operação("+")
+    
 
 )
 botao_soma.place(x=294.1, y=464.5)
@@ -158,7 +162,7 @@ botao_diminui = CTkButton(
 botao_multiplica = CTkButton(
     frame_ic, **b_cinza,
     text='x',
-    command=None
+    command=lambda: resultado.configure(text=def_operação("x"))
 )
 botao_multiplica.place(x=294.1, y=338.2)
 
@@ -166,7 +170,7 @@ botao_multiplica.place(x=294.1, y=338.2)
 botao_dividir = CTkButton(
     frame_ic, **b_cinza,
     text='/',
-    command=None
+    command=lambda: resultado.configure(text=def_operação("/"))
 )
 botao_dividir.place(x=295.2, y=274.8)
 
